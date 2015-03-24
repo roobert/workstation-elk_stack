@@ -1,0 +1,35 @@
+---
+
+- name: debconf-utils
+  apt:
+    package=debconf-utils
+    state=present
+
+- name: repository
+  apt_repository:
+    repo="ppa:webupd8team/java"
+    state=present
+
+- name: check license slect
+  shell: "debconf-get-selections | grep -E 'oracle-java7-installershared/accepted-oracle-license-v1-1.*select.*true'"
+  register: license_select
+  ignore_errors: true
+
+- name: accept license select
+  shell: "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections"
+  when: license_select.rc != 0
+
+- name: check license seen
+  shell: "debconf-get-selections | grep -E 'oracle-java7-installershared/accepted-oracle-license-v1-1.*seen.*true'"
+  register: license_seen
+  ignore_errors: true
+
+- name: accept license
+  shell: "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections"
+  when: license_seen.rc != 0
+
+- name: package
+  apt:
+    update_cache=yes
+    name=oracle-java7-installer
+    state=present

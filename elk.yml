@@ -5,6 +5,7 @@
   connection: local
   sudo: true
   roles:
+    - java7
     - elasticsearch
     - logstash
     - kibana
