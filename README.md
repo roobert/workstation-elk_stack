@@ -40,4 +40,4 @@ Open `http://localhost:5601` in a web browser then:
 
 ### TODO
 
-Add elasticsearch-curator
+* add elasticsearch-curator
