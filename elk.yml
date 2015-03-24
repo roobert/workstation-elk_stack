@@ -1,0 +1,10 @@
+---
+
+- name: deploy elk stack
+  hosts: localhost
+  connection: local
+  sudo: true
+  roles:
+    - elasticsearch
+    - logstash
+    - kibana

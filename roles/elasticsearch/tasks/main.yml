@@ -1,0 +1,23 @@
+---
+
+- name: apt-key
+  apt_key:
+    url="http://packages.elasticsearch.org/GPG-KEY-elasticsearch"
+    state=present
+
+- name: repository
+  apt_repository:
+    repo="deb http://packages.elasticsearch.org/elasticsearch/1.5/debian stable main"
+    state=present
+
+- name: package
+  apt:
+    update_cache=yes
+    name=elasticsearch
+    state=present
+
+- name: elasticsearch-head plugin
+  shell: "/usr/share/elasticsearch/bin/plugin --install mobz/elasticsearch-head"
+  args:
+    creates: /usr/share/elasticsearch/plugins/head/
+
