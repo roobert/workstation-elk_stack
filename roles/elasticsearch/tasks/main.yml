@@ -12,21 +12,30 @@
 
 - name: package
   apt:
-    update_cache=yes
     name=elasticsearch
     state=present
+  notify: restart elasticsearch
 
 - name: config
   copy:
     src=elasticsearch.yml
     dest=/etc/elasticsearch/elasticsearch.yml
+  notify: restart elasticsearch
 
 - name: elasticsearch-head plugin
   shell: "/usr/share/elasticsearch/bin/plugin --install mobz/elasticsearch-head"
   args:
     creates: /usr/share/elasticsearch/plugins/head/
+  notify: restart elasticsearch
 
 - name: HQ plugin
   shell: "/usr/share/elasticsearch/bin/plugin --install royrusso/elasticsearch-HQ"
   args:
     creates: /usr/share/elasticsearch/plugins/HQ/
+  notify: restart elasticsearch
+
+- name: service
+  service:
+    name=elasticsearch
+    enabled=yes
+    state=started

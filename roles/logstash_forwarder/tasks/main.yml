@@ -9,21 +9,25 @@
   copy:
     src=logstash-forwarder.conf
     dest=/etc/logstash-forwarder.conf
+  notify: restart logstash-forwarder
 
 - name: logstash logstash-forwarder input config
   copy:
     src=01-logstash-forwarder-input.conf
     dest=/etc/logstash/conf.d/
+  notify: restart logstash
 
 - name: logstash logstash-forwarder syslog config
   copy:
     src=10-syslog.conf
     dest=/etc/logstash/conf.d/
+  notify: restart logstash
 
 - name: logstash logstash-forwarder output config
   copy:
     src=30-logstash-forwarder-output.conf
     dest=/etc/logstash/conf.d/
+  notify: restart logstash
 
 - name: apt-key
   apt_key:
@@ -39,3 +43,10 @@
   apt:
     name=logstash-forwarder
     state=present
+  notify: restart logstash-forwarder
+
+- name: service
+  service:
+    name=logstash-forwarder
+    enabled=yes
+    state=started

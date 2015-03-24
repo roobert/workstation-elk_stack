@@ -1,0 +1,6 @@
+---
+
+- name: restart logstash_forwarder
+  service:
+    name=logstash-forwarder
+    state=restarted

@@ -15,3 +15,10 @@
     update_cache=yes
     name=logstash
     state=present
+  notify: restart logstash
+
+- name: service
+  service:
+    name=logstash
+    enabled=yes
+    state=started
