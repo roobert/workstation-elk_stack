@@ -12,7 +12,6 @@
 
 - name: package
   apt:
-    update_cache=yes
     name=logstash
     state=present
   notify: restart logstash

@@ -30,6 +30,5 @@
 
 - name: package
   apt:
-    update_cache=yes
     name=oracle-java7-installer
     state=present
