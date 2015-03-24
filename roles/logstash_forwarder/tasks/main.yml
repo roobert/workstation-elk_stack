@@ -1,0 +1,41 @@
+---
+
+- name: ssl key/crt
+  shell: "mkdir /etc/logstash/ssl; openssl req -subj '/CN=localhost/' -x509 -batch -nodes -newkey rsa:2048 -keyout /etc/logstash/ssl/logstash-forwarder.key -out /etc/logstash/ssl/logstash-forwarder.crt"
+  args:
+    creates: /etc/logstash/ssl
+
+- name: logstash-forwarder config
+  copy:
+    src=logstash-forwarder.conf
+    dest=/etc/logstash-forwarder.conf
+
+- name: logstash logstash-forwarder input config
+  copy:
+    src=01-logstash-forwarder-input.conf
+    dest=/etc/logstash/conf.d/
+
+- name: logstash logstash-forwarder syslog config
+  copy:
+    src=10-syslog.conf
+    dest=/etc/logstash/conf.d/
+
+- name: logstash logstash-forwarder output config
+  copy:
+    src=30-logstash-forwarder-output.conf
+    dest=/etc/logstash/conf.d/
+
+- name: apt-key
+  apt_key:
+    url="http://packages.elasticsearch.org/GPG-KEY-elasticsearch"
+    state=present
+
+- name: repository
+  apt_repository:
+    repo="deb http://packages.elasticsearch.org/logstashforwarder/debian stable main"
+    state=present
+
+- name: package
+  apt:
+    name=logstash-forwarder
+    state=present

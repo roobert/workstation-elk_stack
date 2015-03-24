@@ -9,3 +9,4 @@
     - elasticsearch
     - logstash
     - kibana
+    - logstash_forwarder

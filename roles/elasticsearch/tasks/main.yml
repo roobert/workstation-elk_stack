@@ -20,3 +20,8 @@
   shell: "/usr/share/elasticsearch/bin/plugin --install mobz/elasticsearch-head"
   args:
     creates: /usr/share/elasticsearch/plugins/head/
+
+- name: HQ plugin
+  shell: "/usr/share/elasticsearch/bin/plugin --install royrusso/elasticsearch-HQ"
+  args:
+    creates: /usr/share/elasticsearch/plugins/HQ/
