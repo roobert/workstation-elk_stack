@@ -38,3 +38,6 @@ Open `http://localhost:5601` in a web browser then:
 * click `create`
 * confirm data is visible under 'Discover' tab
 
+### TODO
+
+Add elasticsearch-curator
