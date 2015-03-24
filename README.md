@@ -3,16 +3,16 @@
 ## Deploy
 
 ```
-sudo ansible-playbook elk.yml
+ansible-playbook --ask-sudo-pass elk.yml
 ```
 
 ## Configure Kibana
 
-Goto `localhost:5601` in a web browser and do the following:
+Open `localhost:5601` in a web browser and do the following:
 * select: Index contains time-based events
 * deselect: Use event time to create index names
-* pick @timestamp from: Time-field name
-* click 'create'
+* pick `@timestamp` from: Time-field name
+* click `create`
 
 ## Todo:
 
