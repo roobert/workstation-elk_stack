@@ -16,6 +16,11 @@
     name=elasticsearch
     state=present
 
+- name: config
+  copy:
+    src=elasticsearch.yml
+    dest=/etc/elasticsearch/elasticsearch.yml
+
 - name: elasticsearch-head plugin
   shell: "/usr/share/elasticsearch/bin/plugin --install mobz/elasticsearch-head"
   args:
