@@ -8,5 +8,5 @@
     - java7
     - elasticsearch
     - logstash
-    - kibana
     - logstash_forwarder
+    - kibana
