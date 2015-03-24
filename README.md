@@ -17,6 +17,7 @@ Logstash-forwarder is configured to write the following to logstash:
 
 Logstash is configured to:
 
+* accept json udp input (port: 5555)
 * accept logstash-forwarder input
 * filter and tag syslog messages
 * write output to elasticsearch
