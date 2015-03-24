@@ -21,3 +21,18 @@ Two plugins are installed by ansible:
 
 * http://localhost:9200/_plugin/head/
 * http://localhost:9200/_plugin/HQ/
+
+## Logstash-forwarder
+
+Logstash-forwarder is configured to write the following to logstash:
+
+* /var/log/syslog
+* /var/log/auth.log
+
+## Logstash
+
+Logstash is configured to:
+
+* accept logstash-forwarder input
+* filter and tag syslog messages
+* write output to elasticsearch
