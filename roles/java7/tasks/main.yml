@@ -24,7 +24,7 @@
   register: license_seen
   ignore_errors: true
 
-- name: accept license
+- name: accept license seen
   shell: "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections"
   when: license_seen.rc != 0
 
