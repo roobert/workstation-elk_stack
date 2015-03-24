@@ -15,6 +15,3 @@
     update_cache=yes
     name=logstash
     state=present
-
-
-
