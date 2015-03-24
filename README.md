@@ -1,4 +1,4 @@
-# workstation-ubuntu-elk
+# workstation-elk-stack
 
 ## Deploy
 
