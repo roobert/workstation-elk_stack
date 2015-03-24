@@ -10,7 +10,7 @@
     repo="ppa:webupd8team/java"
     state=present
 
-- name: check license slect
+- name: check license select
   shell: "debconf-get-selections | grep -E 'oracle-java7-installershared/accepted-oracle-license-v1-1.*select.*true'"
   register: license_select
   ignore_errors: true
