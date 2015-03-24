@@ -12,21 +12,11 @@
   notify: restart logstash-forwarder
 
 - name: logstash logstash-forwarder input config
-  copy:
-    src=01-logstash-forwarder-input.conf
+  synchronize:
+    src=roles/logstash_forwarder/files/conf.d/
     dest=/etc/logstash/conf.d/
-  notify: restart logstash
-
-- name: logstash logstash-forwarder syslog config
-  copy:
-    src=10-syslog.conf
-    dest=/etc/logstash/conf.d/
-  notify: restart logstash
-
-- name: logstash logstash-forwarder output config
-  copy:
-    src=30-logstash-forwarder-output.conf
-    dest=/etc/logstash/conf.d/
+    recursive=yes
+    checksum=yes
   notify: restart logstash
 
 - name: apt-key
