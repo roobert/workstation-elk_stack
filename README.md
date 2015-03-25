@@ -38,6 +38,11 @@ Open `http://localhost:5601` in a web browser then:
 * click `create`
 * confirm data is visible under 'Discover' tab
 
-### TODO
+## TODO
 
 * add elasticsearch-curator
+
+## FAQ(!)
+### What is ELK?
+
+See: [here](https://www.elastic.co/webinars/elk-stack-devops-environment/).
