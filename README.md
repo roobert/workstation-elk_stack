@@ -45,4 +45,4 @@ Open `http://localhost:5601` in a web browser then:
 ## FAQ(!)
 ### What is ELK?
 
-See: [here](https://www.elastic.co/webinars/elk-stack-devops-environment/).
+See [here](https://www.elastic.co/webinars/elk-stack-devops-environment/).
