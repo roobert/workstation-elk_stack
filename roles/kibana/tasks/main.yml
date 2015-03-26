@@ -11,6 +11,23 @@
     dest=/opt/kibana
     state=link
 
+- name: nginx config
+  file:
+    src=nginx/kibana
+    dest=/etc/nginx/sites-available/kibana
+
+- name: nginx config symlink
+  file:
+    src=/etc/nginx/sites-available/kibana
+    dest=/etc/nginx/sites-enabled/kibana
+    state=link
+
+- name: dnsmasq config
+  file:
+    src=dnsmasq/kibana
+    dest=/etc/NetworkManager/dnsmasq.d/kibana
+  notify: restart network-manager
+
 - name: init script
   shell: "wget https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/bce61d85643c2dcdfbc2728c55a41dab444dca20/kibana4 -O /etc/init.d/kibana"
   args:

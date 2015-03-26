@@ -1,0 +1,16 @@
+server {
+  listen 80;
+  server_name kibana.localhost;
+
+  charset utf-8;
+  access_log /var/log/nginx/kibana.access.log;
+  error_log /var/log/nginx/kibana.error.log;
+
+  location / {
+    proxy_pass http://localhost:5601;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+  }
+}
