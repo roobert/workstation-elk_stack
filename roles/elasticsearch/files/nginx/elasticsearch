@@ -1,0 +1,50 @@
+server {
+  listen 80;
+  server_name elasticsearch.localhost;
+
+  charset utf-8;
+  access_log /var/log/nginx/elasticsearch.access.log;
+  error_log /var/log/nginx/elasticsearch.error.log;
+
+  location / {
+    proxy_pass http://localhost:9200;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+  }
+}
+
+server {
+  listen 80;
+  server_name hq.elasticsearch.localhost;
+
+  charset utf-8;
+  access_log /var/log/nginx/hq.elasticsearch.access.log;
+  error_log /var/log/nginx/hq.elasticsearch.error.log;
+
+  location / {
+    proxy_pass http://localhost:9200/_plugin/HQ;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+  }
+}
+
+server {
+  listen 80;
+  server_name head.elasticsearch.localhost;
+
+  charset utf-8;
+  access_log /var/log/nginx/head.elasticsearch.access.log;
+  error_log /var/log/nginx/head.elasticsearch.error.log;
+
+  location / {
+    proxy_pass http://localhost:9200/_plugin/head;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+  }
+}

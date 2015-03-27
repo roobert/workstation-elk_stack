@@ -12,18 +12,20 @@
     state=link
 
 - name: nginx config
-  file:
+  copy:
     src=nginx/kibana
     dest=/etc/nginx/sites-available/kibana
+  notify: reload nginx
 
 - name: nginx config symlink
   file:
     src=/etc/nginx/sites-available/kibana
     dest=/etc/nginx/sites-enabled/kibana
     state=link
+  notify: reload nginx
 
 - name: dnsmasq config
-  file:
+  copy:
     src=dnsmasq/kibana
     dest=/etc/NetworkManager/dnsmasq.d/kibana
   notify: restart network-manager

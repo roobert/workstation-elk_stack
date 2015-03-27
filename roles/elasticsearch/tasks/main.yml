@@ -18,9 +18,28 @@
 
 - name: config
   copy:
-    src=elasticsearch.yml
+    src=elasticsearch/elasticsearch.yml
     dest=/etc/elasticsearch/elasticsearch.yml
   notify: restart elasticsearch
+
+- name: nginx config
+  copy:
+    src=nginx/elasticsearch
+    dest=/etc/nginx/sites-available/elasticsearch
+  notify: reload nginx
+
+- name: nginx config symlink
+  file:
+    src=/etc/nginx/sites-available/elasticsearch
+    dest=/etc/nginx/sites-enabled/elasticsearch
+    state=link
+  notify: reload nginx
+
+- name: dnsmasq config
+  copy:
+    src=dnsmasq/elasticsearch
+    dest=/etc/NetworkManager/dnsmasq.d/elasticsearch
+  notify: restart network-manager
 
 - name: head plugin
   shell: "/usr/share/elasticsearch/bin/plugin --install mobz/elasticsearch-head"

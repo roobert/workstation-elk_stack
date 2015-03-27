@@ -5,6 +5,7 @@
   connection: local
   sudo: true
   roles:
+    - network-manager
     - java7
     - elasticsearch
     - logstash

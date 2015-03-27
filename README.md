@@ -31,7 +31,7 @@ Two plugins are installed by ansible:
 
 ## Kibana
 
-Open `http://localhost:5601` in a web browser then:
+Open `http://kibana.localhost` in a web browser then:
 * select: Index contains time-based events
 * deselect: Use event time to create index names
 * pick `@timestamp` from: Time-field name
