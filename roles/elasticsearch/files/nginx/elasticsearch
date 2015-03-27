@@ -7,6 +7,7 @@ server {
   error_log /var/log/nginx/elasticsearch.error.log;
 
   location / {
+    add_header Access-Control-Allow-Origin *;
     proxy_pass http://localhost:9200;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
@@ -24,7 +25,8 @@ server {
   error_log /var/log/nginx/hq.elasticsearch.error.log;
 
   location / {
-    proxy_pass http://localhost:9200/_plugin/HQ;
+    rewrite ^/(.*)$ /_plugin/HQ/$1 break;
+    proxy_pass http://elasticsearch.localhost;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
@@ -40,8 +42,10 @@ server {
   access_log /var/log/nginx/head.elasticsearch.access.log;
   error_log /var/log/nginx/head.elasticsearch.error.log;
 
+
   location / {
-    proxy_pass http://localhost:9200/_plugin/head;
+    rewrite ^/(.*)$ /_plugin/head/$1 break;
+    proxy_pass http://elasticsearch.localhost;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
