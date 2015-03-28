@@ -41,7 +41,9 @@ Open `http://kibana.localhost/` in a web browser then:
 ## About the Deployment
 ### DNS
 
-DNS is configured by adding files containing virtual hosts to `/etc/NetworkManager/dnsmasq.d`. During the deployment `NetworkManager` is restarted which may cause momentary loss of network connectivity.
+DNS is configured by adding files containing virtual hosts to `/etc/NetworkManager/dnsmasq.d`.
+
+During the deployment `NetworkManager` is restarted which may cause momentary loss of network connectivity.
 
 ### Nginx
 
