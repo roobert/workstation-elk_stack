@@ -47,6 +47,9 @@
     creates: /usr/share/elasticsearch/plugins/head/
   notify: restart elasticsearch
 
+- name: configure head plugin
+  shell: "sed 's/localhost:9200/elasticsearch.localhost/' -i /usr/share/elasticsearch/plugins/head/_site/dist/app.js"
+
 - name: HQ plugin
   shell: "/usr/share/elasticsearch/bin/plugin --install royrusso/elasticsearch-HQ"
   args:
