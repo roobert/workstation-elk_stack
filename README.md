@@ -26,17 +26,30 @@ Logstash is configured to:
 
 Two plugins are installed by ansible:
 
-* http://localhost:9200/_plugin/head/
-* http://localhost:9200/_plugin/HQ/
+* http://head.elasticsearch.localhost/
+* http://hq.elasticsearch.localhost/
 
 ## Kibana
 
-Open `http://kibana.localhost` in a web browser then:
+Open `http://kibana.localhost/` in a web browser then:
 * select: Index contains time-based events
 * deselect: Use event time to create index names
 * pick `@timestamp` from: Time-field name
 * click `create`
 * confirm data is visible under 'Discover' tab
+
+## About the Deployment
+### DNS
+
+DNS is configured by adding files containing virtual hosts to `/etc/NetworkManager/dnsmasq.d`. During the deployment `NetworkManager` is restarted which may cause momentary loss of network connectivity.
+
+### Nginx
+
+`nginx` virtual hosts have been configured for each component but also allow some flexibility if an alternate DNS scheme is to be used. For each component the following `server_names` exist:
+
+* `<component>.localhost`
+* `<component>.*`
+* `<component>`
 
 ## TODO
 

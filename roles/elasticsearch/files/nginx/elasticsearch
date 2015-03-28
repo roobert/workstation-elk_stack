@@ -1,6 +1,6 @@
 server {
   listen 80;
-  server_name elasticsearch.localhost;
+  server_name elasticsearch elasticsearch.localhost elasticsearch.*;
 
   charset utf-8;
   access_log /var/log/nginx/elasticsearch.access.log;
@@ -18,7 +18,7 @@ server {
 
 server {
   listen 80;
-  server_name hq.elasticsearch.localhost;
+  server_name hq.elasticsearch hq.elasticsearch.localhost hq.elasticsearch.*;
 
   charset utf-8;
   access_log /var/log/nginx/hq.elasticsearch.access.log;
@@ -36,7 +36,7 @@ server {
 
 server {
   listen 80;
-  server_name head.elasticsearch.localhost;
+  server_name head.elasticsearch head.elasticsearch.localhost head.elasticsearch.*;
 
   charset utf-8;
   access_log /var/log/nginx/head.elasticsearch.access.log;
