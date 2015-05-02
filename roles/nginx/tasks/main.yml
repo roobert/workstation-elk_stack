@@ -2,7 +2,5 @@
 
 - name: package
   apt:
-    package="{{ item }}"
+    package=nginx
     state=present
-  with_items:
-    - nginx
