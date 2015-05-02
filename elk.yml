@@ -11,4 +11,3 @@
     - logstash
     - logstash_forwarder
     - kibana
-    - nginx
